@@ -74,9 +74,9 @@ on load:
 		if {@AutoUpdate} is true:
 			if file "plugins/Skript/scripts/%script's name%.sk" exists:
 				send "{@prefix} Mise à jour disponible ! La version &e%{_ver}%" to console
-				download file from "https://pastebin.com/raw/r52bwT0D" to "plugins/Skript/scripts/%script's name%.sk"
+				download file from "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/spawn.sk" to "plugins/Skript/scripts/%script's name%.sk"
 				wait 5 ticks
-				execute console command "/skript reload hikabrain"
+				execute console command "/skript reload %script's name%"
 				send "{@prefix} Mise a jour terminée !" to console
 				stop
 		else:
