@@ -8,7 +8,7 @@
 #========================
 options:
 	
-	Version: 1.1 #Ne pas toucher
+	version: 1.1 #Ne pas toucher
 	AutoUpdate: true
 	permissiona: admin.spawn
 	prefix: &l&eSpawn&r&7 » &e
@@ -67,6 +67,7 @@ command /hub:
 		send "{@prefix}Téléportation en cours..."
 		wait 10 ticks
 		teleport player to {lobby.loc}
+		
 command /{@spawnupdate}:
 	permission: {@permissiona}
 	trigger:
