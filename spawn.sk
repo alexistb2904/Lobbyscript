@@ -18,6 +18,7 @@ options:
 	lobbyset: lobbyset 
 	spawnset: spawnset
 	help: spawnhelp
+	spawnupdate: spawnupdate
 #========================
 #	    SCRIPT
 #========================
@@ -66,7 +67,25 @@ command /hub:
 		send "{@prefix}Téléportation en cours..."
 		wait 10 ticks
 		teleport player to {lobby.loc}
-
+command /{@spawnupdate}:
+	permission: {@permissiona}
+	trigger:
+		send "{@prefix} Recherche d'une nouvelle version..." to player
+		set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/Version"
+		if {_ver} is not "{@version}":
+			if {@AutoUpdate} is true:
+				if file "plugins/Skript/scripts/%script's name%.sk" exists:
+					send "{@prefix} Mise à jour disponible ! La version &e%{_ver}%" to player
+					download "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/spawn.sk" to "plugins/Skript/scripts/%script's name%.sk"
+					wait 5 ticks
+					execute console command "/skript reload %script's name%"
+					send "{@prefix} Mise a jour terminée !" to player
+					stop
+			else:
+				send "{@prefix} L'AutoUpdate est désactiver, annulation de la mise à jour.." to player
+		else:
+			send "{@prefix} Aucune mise à jour disponible." to player
+			
 on load:
 	send "{@prefix} Recherche d'une nouvelle version..." to console
 	set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/Version"
