@@ -8,7 +8,7 @@
 #========================
 options:
 	
-	version: 1.1 #Ne pas toucher
+	version: 1.2 #Ne pas toucher
 	AutoUpdate: true
 	permissiona: admin.spawn
 	prefix: &l&eSpawn&r&7 » &e
@@ -67,7 +67,6 @@ command /hub:
 		send "{@prefix}Téléportation en cours..."
 		wait 10 ticks
 		teleport player to {lobby.loc}
-		
 command /{@spawnupdate}:
 	permission: {@permissiona}
 	trigger:
@@ -75,7 +74,7 @@ command /{@spawnupdate}:
 		set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/Version"
 		if {_ver} is not "{@version}":
 			if {@AutoUpdate} is true:
-				if file "plugins/Skript/scripts/%script's name%.sk" exists:
+				if file exists at "plugins/Skript/scripts/%script's name%.sk":
 					send "{@prefix} Mise à jour disponible ! La version &e%{_ver}%" to player
 					download "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/spawn.sk" to "plugins/Skript/scripts/%script's name%.sk"
 					wait 5 ticks
@@ -92,7 +91,7 @@ on load:
 	set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/Version"
 	if {_ver} is not "{@version}":
 		if {@AutoUpdate} is true:
-			if file "plugins/Skript/scripts/%script's name%.sk" exists:
+			if file exists at "plugins/Skript/scripts/%script's name%.sk":
 				send "{@prefix} Mise à jour disponible ! La version &e%{_ver}%" to console
 				download "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/spawn.sk" to "plugins/Skript/scripts/%script's name%.sk"
 				wait 5 ticks
