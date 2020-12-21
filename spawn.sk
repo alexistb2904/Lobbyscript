@@ -1,0 +1,89 @@
+#========================
+#	 SPAWN/LOBBY
+#	    SCRIPT
+#	by alexistb2904
+#   alexistb2904#5339
+#========================
+#	 CONFIGURATION
+#========================
+options:
+	
+	Version: 1.0 #Ne pas toucher
+	AutoUpdate: true
+	permissiona: admin.spawn
+	prefix: &l&eSpawn&r&7 » &e
+#========================
+#	   COMMANDES
+#========================
+	lobbyset: lobbyset 
+	spawnset: spawnset
+	help: spawnhelp
+#========================
+#	    SCRIPT
+#========================
+command /{@lobbyset}:
+	trigger:
+		if player has permission "{@permissiona}":
+			set {lobby.loc} to location of player
+			wait 1 tick
+			set {spawn.%world%} to location of player
+			make player execute command "setworldspawn" #pour respawn au spawn
+			send "{@prefix}Le lobby du serveur à bien été set"
+		else:
+			send "{@prefix}Tu n'a pas la permission de faire ceci"
+
+command /{@spawnset}:
+	trigger:
+		if player has permission "{@permissiona}":
+			set {spawn.%world%} to location of player
+			make player execute command "setworldspawn" #pour respawn au spawn
+			send "{@prefix}Le spawn du monde à bien été set"
+		else:
+			send "{@prefix}Tu n'a pas la permission de faire ceci"
+
+command /{@help}:
+	trigger:
+		send "&l&eSpawn/Lobby HELP"
+		send ""
+		send "&e/spawnset : &fpermet de définir le spawn du monde"
+		send "&e/lobbyset : &fpermet de définir le lobby du serveur"
+		send "&e/spawnupdate : &fpermet de vérifier si une mise à jour est disponible"
+			
+command /spawn:
+	trigger:
+		send "{@prefix}Téléportation en cours..."
+		wait 10 ticks
+		teleport player to {spawn.%world%}
+
+command /lobby:
+	trigger:
+		send "{@prefix}Téléportation en cours..."
+		wait 10 ticks
+		teleport player to {lobby.loc}
+
+command /hub:
+	trigger:
+		send "{@prefix}Téléportation en cours..."
+		wait 10 ticks
+		teleport player to {lobby.loc}
+
+on load:
+	send "{@prefix} Recherche d'une nouvelle version..." to console
+	set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/Version"
+	if {_ver} is not "{@version}":
+		if {@AutoUpdate} is true:
+			if file "plugins/Skript/scripts/%script's name%.sk" exists:
+				send "{@prefix} Mise à jour disponible ! La version &e%{_ver}%" to console
+				download file from "https://pastebin.com/raw/r52bwT0D" to "plugins/Skript/scripts/%script's name%.sk"
+				wait 5 ticks
+				execute console command "/skript reload hikabrain"
+				send "{@prefix} Mise a jour terminée !" to console
+				stop
+		else:
+			send "{@prefix} L'AutoUpdate est désactiver, annulation de la mise à jour.." to console
+	else:
+		send "{@prefix} Aucune mise à jour disponible." to console
+		
+on load:
+	send "{@prefix}le script spawn/lobby à bien été charger sans erreur" to console
+	send "        le script à été fait par alexistb2904" to console
