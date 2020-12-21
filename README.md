@@ -4,6 +4,8 @@ Ce script permet de définir des spawn par monde et un lobby accessible par tout
 
 le script ne nécessite aucune dépendance sauf skript.
 
+Pour utiliser l'autoupdate veuiller installer les dépendance : Skutilities et Skellett
+
 Fonctionnalité:
 		Spawn par monde
 		lobby accessible depuis tout les mondes
