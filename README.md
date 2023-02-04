@@ -1,4 +1,5 @@
 # Script de lobby et de spawn
+**Crée avec le language Skript https://github.com/SkriptLang/Skript/releases**
 
 Ce script permet de définir des spawn par monde et un lobby accessible par tout les mondes
 
